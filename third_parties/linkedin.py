@@ -7,11 +7,10 @@ load_dotenv()
 
 def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
     """scrape information from LinkedIn profiles,
-    Manually scrape the inforamtion from the LinkedIn profile"""
+    Manually scrape the information from the LinkedIn profile"""
 
     if mock:
-        linkedin_profile_url = ""
-        response = requests.get(linkedin_profile_url, timeout=10)
+        return {"mock_data": "Mock LinkedIn Profile Data"}
     else:
         api_endpoint = "https://api.scrapin.io/enrichment/profile"
         params = {
@@ -20,7 +19,6 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
         }
         response = requests.get(api_endpoint, params=params, timeout=10)
 
-    # json().get will return a dictionary into the data var
     data = response.json().get("person")
     data = {
         k: v
@@ -34,6 +32,6 @@ def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):
 if __name__ == "__main__":
     print(
         scrape_linkedin_profile(
-            linkedin_profile_url="https://www.linkedin.com/in/ameliowright", mock=True
+            linkedin_profile_url="https://www.linkedin.com/in/ameliowright", mock=False
         )
     )

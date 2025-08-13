@@ -17,19 +17,17 @@ def lookup(name: str) -> str:
         temperature=0,
         model_name="gpt-4o-mini",
     )
-    template = """given the full name {name_of_person} I want you to get me a link to their Linkedin profile page.
-                                Return ONLY the direct URL with no markdown formatting, quotes, or additional text.
-                                Example correct output: https://www.linkedin.com/in/username
-                                The output should start with https:// and it must contain /in/."""
+    template = """given the name {name_of_person} I want you to find a link to their twitter profile page, and extract from it their username.
+                    In your Final Answer provide only the person's username."""
 
     prompt_template = PromptTemplate(
         template=template, input_variables=["name_of_person"]
     )
     tools_for_agent = [
         Tool(
-            name="Crawl Google 4 linkedin profile page",
+            name="Crawl Google 4 twitter profile page",
             func=get_profile_url_tavily,
-            description="useful for when you need to get the Linkedin Page URL",
+            description="useful for when you need to get the twitter Page URL",
         )
     ]
 
@@ -41,8 +39,8 @@ def lookup(name: str) -> str:
         input={"input": prompt_template.format_prompt(name_of_person=name)}
     )
 
-    linkedin_profile_url = result["output"]
-    return linkedin_profile_url
+    x_profile_url = result["output"]
+    return x_profile_url
 
 if __name__ == "__main__":
-    linkedin_url = lookup(name="Amelio Wright")
+    x_profile_url = lookup(name="Elon Musk")
