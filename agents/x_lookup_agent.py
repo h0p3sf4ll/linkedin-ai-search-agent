@@ -42,5 +42,6 @@ def lookup(name: str) -> str:
     x_profile_url = result["output"]
     return x_profile_url
 
+
 if __name__ == "__main__":
     x_profile_url = lookup(name="Elon Musk")
