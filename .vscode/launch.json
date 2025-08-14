@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "LinkedIn AI Search Agent Runner",
+            "name": "People AI Search Agent Runner",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
